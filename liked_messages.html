@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+{% block content %}
+
+<div class="bg"></div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <ul class="list-group no-hover" id="messages">
+            <li class="list-group-item">
+                <a href="{{ url_for('users_show', user_id=message.user.id) }}">
+                    <img src="{{ message.user.image_url }}" alt="" class="timeline-image">
+                </a>
+                <div class="message-area">
+                    <div class="message-heading">
+                        <a href="/users/{{ message.user.id }}">@{{ message.user.username }}</a>
+                        <i class="fas fa-star"></i>
+
+                    </div>
+                    <p class="single-message">{{ message.text }}</p>
+                    <span class="text-muted">{{ message.timestamp.strftime('%d %B %Y') }}</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
