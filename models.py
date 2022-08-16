@@ -13,7 +13,7 @@ class Follows(db.Model):
     """Connection of a follower <-> followed_user."""
 
     __tablename__ = 'follows'
- 
+
     user_being_followed_id = db.Column(
         db.Integer,
         db.ForeignKey('users.id', ondelete="cascade"),
@@ -44,9 +44,9 @@ class Likes(db.Model):
 
     message_id = db.Column(
         db.Integer,
-        db.ForeignKey('messages.id', ondelete='cascade'),
-        unique=True
+        db.ForeignKey('messages.id', ondelete='cascade')
     )
+
 
 
 class User(db.Model):
@@ -100,16 +100,14 @@ class User(db.Model):
         "User",
         secondary="follows",
         primaryjoin=(Follows.user_being_followed_id == id),
-        secondaryjoin=(Follows.user_following_id == id),
-        
+        secondaryjoin=(Follows.user_following_id == id)
     )
 
     following = db.relationship(
         "User",
         secondary="follows",
         primaryjoin=(Follows.user_following_id == id),
-        secondaryjoin=(Follows.user_being_followed_id == id),
-        
+        secondaryjoin=(Follows.user_being_followed_id == id)
     )
 
     likes = db.relationship(

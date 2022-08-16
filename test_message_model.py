@@ -1,6 +1,3 @@
-
-
-      
 """Message model tests."""
 
 # run these tests like:
@@ -94,3 +91,6 @@ class UserModelTestCase(TestCase):
         l = Likes.query.filter(Likes.user_id == uid).all()
         self.assertEqual(len(l), 1)
         self.assertEqual(l[0].message_id, m1.id)
+
+
+        
